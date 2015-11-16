@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ch">
+	<head>
+		<meta charset='utf-8'>
+	</head>
+
+	<body class="s-bg-ddd">
+		<h3>selection对象与range对象的使用实例</h3>
+		<input type="button" value="点击我" onclick="rangeTest()"/>
+		<div id="showRange"></div>
+		<!-- JS代码如下： -->
+		<script>
+		   function rangeTest() {
+		        var html,
+			        showRangeDiv = document.getElementById("showRange"),
+			        selection = document.getSelection();
+		        if(selection.rangeCount > 0) {
+		            html = "你选取了" + selection.rangeCount + "段内容<br/>";
+		            for(var i = 0; i < selection.rangeCount; i++) {
+		                var range = selection.getRangeAt(i);
+		                html += "第" + (i + 1) + "段内容为：" + range + "<br/>";
+		            }
+		            showRangeDiv.innerHTML = html;
+		        }
+		    }
+		</script>
+
+		<br><br>
+		<div id="div" style="background-color:#e0a0b0;width:300px;height:50px;">元素中的内容</div>
+		<button onclick="deleteRangeContents(true)">删除内容</button>
+		<button onclick="deleteRangeContents(false)">删除元素</button>
+
+		<script>
+		    function deleteRangeContents(flag) {
+		        var div = document.getElementById("div");
+		        var rangeObj = document.createRange();
+		        if(flag) {
+		            // selectNodeContents指选中Range对象中的所有内容  进行删除掉
+		            rangeObj.selectNodeContents(div);
+		            rangeObj.deleteContents();
+		        }else {
+		            rangeObj.selectNode(div);
+		            rangeObj.deleteContents();
+		        }
+		    }
+		</script>
+
+		<br><br>
+		<div id="myDiv">这段文字中第三个文字到第十个文字将被删除掉</div>
+		<button onclick="DeleteChar()">删除文字</button>
+		JS代码如下：
+		<script>
+		    function DeleteChar(){
+		        var myDiv = document.getElementById("myDiv");
+		        var textNode = myDiv.firstChild;
+		        var rangeObj = document.createRange();
+		        rangeObj.setStart(textNode,2);
+		        rangeObj.setEnd(textNode,10);
+		        rangeObj.deleteContents();
+		    }
+		</script>
+
+		<br><br>
+		<div onmouseup="MoveButton()" style="width:400px;height:100px;background-color:red">aaaaaaaaabbbbbb</div>
+		<button id="button">按钮</button>
+		JS代码如下：
+		<script>
+		    function MoveButton() {
+		        var button = document.getElementById("button");
+		        var selection = document.getSelection();
+		        if(selection.rangeCount > 0) {
+		            var range = selection.getRangeAt(0);
+		            range.insertNode(button);
+		        }
+		    }
+		</script>
+	</body>
+</html>
+

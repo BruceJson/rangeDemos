@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='utf-8'>
+	<script src='jquery-2.0.3.min.js'></script>
+</head>
+<body>
+    <div contenteditable='true'>
+        <p>sdfsdf</p>
+        <p>sdfsdf</p>
+        <p>sdfsdf</p>
+        <p>sdfsdf</p>
+        <p>sdfsdf</p>
+        <p>sdfsdf</p>
+        <p>sdfsdf</p>
+        <p>sdfsdf</p>
+    </div>
+</body>
+
+<button onclick='click1()'>按钮1</button>
+
+<script>
+    var rng = document.createRange();
+	function click1(){
+        var selection = document.getSelection();
+        selection.removeAllRanges();
+
+        var node = $('div p')[3];
+        var text = node.firstChild;
+
+        rng.setStart(text, 0);
+        rng.setEnd(text, 0);
+
+        var node1 = document.createElement('button');
+        node1.contenteditable = false;
+        node1.innerHTML = '123456';
+
+        rng.insertNode(node1);
+        selection.addRange(rng);
+    }
+</script>
+</html>
