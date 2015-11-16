@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+		*{box-sizing: border-box;}
+		.list{margin:100px auto;width: 200px;height: 600px;overflow: auto;background-color: #eeeeee;}
+		.item{
+			border-bottom: 1px solid #FFAB7E;
+			color: #fff;
+			text-align: center;
+		}
+
+		.item .item_content{background-color: #FF9800;padding: 10px 0;}
+
+		.item .item_part{
+			transition: all 0.3s linear;
+			-webkit-perspective: 200;
+			-webkit-backface-visibility: hidden;
+			overflow: hidden;
+			height: 50px;
+		}
+		.item .item_part.item_part_up{
+			-webkit-perspective-origin: 50% 0px;
+		}
+		.item .item_part.item_part_down{
+			-webkit-perspective-origin: 50% 100%;
+		}
+		.item .item_part .inner{
+			background-color: #fff;
+			color: #000;
+			text-align: center;
+			padding: 15px 0;
+			tranform-style: preserve-3d;
+			transition: all 0.3s linear;
+			height: 50px;
+			border-bottom: 1px solid #D9D9D9;
+		}
+		.item .item_part:nth-last-child(1) .inner{
+			border-bottom: none;
+		}
+
+		.item .item_part .inner_up{
+			transform-origin: 0 0;
+		}
+		.item .item_part .inner_down{
+			transition: all 0.3s linear;
+			transform-origin: 0 100%;
+		}
+
+		.item.active .item_part.item_part_up,.item.active .item_part.item_part_down{
+			height: 0;
+		}
+
+		.item.active .item_part.item_part_up .inner{
+			transform: rotateX(-90deg);
+		}
+		.item.active .item_part.item_part_down .inner{
+			transform: translateY(-50px) rotateX(90deg);
+		}
+	</style>
+	<script src='../jquery-2.0.3.min.js'></script>
+</head>
+<body>
+	<div class='list'>
+		<div class='item'>
+			<div class='item_content'>11111</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>22222</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>33333</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>44444</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>55555</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>66666</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>77777</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>88888</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>99999</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>00000</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>11111</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>22222</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>33333</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>44444</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>55555</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>66666</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>77777</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>88888</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>99999</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+		<div class='item'>
+			<div class='item_content'>00000</div>
+			<div class='item_part item_part_up'>
+				<div class='inner inner_up'>up</div>
+			</div>
+			<div class='item_part item_part_down'>
+				<div class='inner inner_down'>down</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	$('.item_content').click(function(){
+		$(this).parents('.item').eq(0).toggleClass('active');
+	});
+</script>
+</html>
